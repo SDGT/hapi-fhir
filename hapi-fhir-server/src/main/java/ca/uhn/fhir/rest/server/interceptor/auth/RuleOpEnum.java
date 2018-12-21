@@ -24,11 +24,14 @@ enum RuleOpEnum {
 	READ,
 	WRITE, 
 	ALLOW_ALL,
-	DENY_ALL, 
+	DENY_ALL,
+	/**
+	 * Transaction applies to both transaction and batch
+	 */
 	TRANSACTION, 
 	METADATA, 
-	BATCH, 
-	DELETE, 
+	DELETE,
 	OPERATION,
+	GRAPHQL,
 	PATCH
 }

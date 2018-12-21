@@ -38,7 +38,7 @@ public class TermConceptMapGroup implements Serializable {
 	private Long myId;
 
 	@ManyToOne()
-	@JoinColumn(name = "CONCEPT_MAP_PID", nullable = false, referencedColumnName = "PID", foreignKey=@ForeignKey(name="FK_TCMGROUP_CONCEPTMAP"))
+	@JoinColumn(name = "CONCEPT_MAP_PID", nullable = false, referencedColumnName = "PID", foreignKey = @ForeignKey(name = "FK_TCMGROUP_CONCEPTMAP"))
 	private TermConceptMap myConceptMap;
 
 	@Column(name = "SOURCE_URL", nullable = false, length = 200)

@@ -1,5 +1,9 @@
 package ca.uhn.fhir.jpa.dao.dstu3;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+
 import ca.uhn.fhir.rest.api.EncodingEnum;
 import ca.uhn.fhir.rest.api.MethodOutcome;
 import ca.uhn.fhir.rest.api.ValidationModeEnum;
@@ -22,9 +26,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 import static ca.uhn.fhir.jpa.util.TestUtil.sleepAtLeast;
-import static org.hamcrest.Matchers.containsString;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 public class FhirResourceDaoDstu3ValidateTest extends BaseJpaDstu3Test {
 	private static final org.slf4j.Logger ourLog = org.slf4j.LoggerFactory.getLogger(FhirResourceDaoDstu3ValidateTest.class);
@@ -199,7 +200,7 @@ public class FhirResourceDaoDstu3ValidateTest extends BaseJpaDstu3Test {
 		String methodName = "testValidateResourceContainingProfileDeclarationInvalid";
 
 		Observation input = new Observation();
-		String profileUri = "http://example.com/" + methodName;
+		String profileUri = "http://example.com/StructureDefinition/" + methodName;
 		input.getMeta().getProfile().add(new IdType(profileUri));
 
 		input.addIdentifier().setSystem("http://acme").setValue("12345");

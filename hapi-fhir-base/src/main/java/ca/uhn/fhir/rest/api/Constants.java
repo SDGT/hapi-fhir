@@ -9,9 +9,9 @@ package ca.uhn.fhir.rest.api;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,8 +42,14 @@ public class Constants {
 	 */
 	public static final Set<String> CORS_ALLWED_METHODS;
 	public static final String CT_FHIR_JSON = "application/json+fhir";
+	/**
+	 * The FHIR MimeType for JSON encoding in FHIR DSTU3+
+	 */
 	public static final String CT_FHIR_JSON_NEW = "application/fhir+json";
 	public static final String CT_FHIR_XML = "application/xml+fhir";
+	/**
+	 * The FHIR MimeType for XML encoding in FHIR DSTU3+
+	 */
 	public static final String CT_FHIR_XML_NEW = "application/fhir+xml";
 	public static final String CT_HTML = "text/html";
 	public static final String CT_HTML_WITH_UTF8 = "text/html" + CHARSET_UTF8_CTSUFFIX;
@@ -86,6 +92,7 @@ public class Constants {
 	public static final String HEADER_CONTENT_LOCATION = "Content-Location";
 	public static final String HEADER_CONTENT_LOCATION_LC = HEADER_CONTENT_LOCATION.toLowerCase();
 	public static final String HEADER_CONTENT_TYPE = "Content-Type";
+	public static final String HEADER_CONTENT_TYPE_LC = HEADER_CONTENT_TYPE.toLowerCase();
 	public static final String HEADER_COOKIE = "Cookie";
 	public static final String HEADER_CORS_ALLOW_METHODS = "Access-Control-Allow-Methods";
 	public static final String HEADER_CORS_ALLOW_ORIGIN = "Access-Control-Allow-Origin";
@@ -182,7 +189,8 @@ public class Constants {
 	public static final int STATUS_HTTP_500_INTERNAL_ERROR = 500;
 	public static final int STATUS_HTTP_501_NOT_IMPLEMENTED = 501;
 	public static final String TAG_SUBSETTED_CODE = "SUBSETTED";
-	public static final String TAG_SUBSETTED_SYSTEM = "http://hl7.org/fhir/v3/ObservationValue";
+	public static final String TAG_SUBSETTED_SYSTEM_DSTU3 = "http://hl7.org/fhir/v3/ObservationValue";
+	public static final String TAG_SUBSETTED_SYSTEM_R4 = "http://terminology.hl7.org/CodeSystem/v3-ObservationValue";
 	public static final String URL_TOKEN_HISTORY = "_history";
 	public static final String URL_TOKEN_METADATA = "metadata";
 	public static final String OO_INFOSTATUS_PROCESSING = "processing";
@@ -196,6 +204,7 @@ public class Constants {
 	 * This is provided for testing only! Use with caution as this property may change.
 	 */
 	public static final String TEST_SYSTEM_PROP_VALIDATION_RESOURCE_CACHES_MS = "TEST_SYSTEM_PROP_VALIDATION_RESOURCE_CACHES_MS";
+	public static final String PARAM_SEARCH_TOTAL_MODE = "_total";
 
 	static {
 		CHARSET_UTF8 = Charset.forName(CHARSET_NAME_UTF8);

@@ -21,6 +21,7 @@ package ca.uhn.fhir.jpa.dao;
  */
 
 import ca.uhn.fhir.context.FhirContext;
+import ca.uhn.fhir.jpa.searchparam.SearchParameterMap;
 import ca.uhn.fhir.model.api.Include;
 import ca.uhn.fhir.rest.param.DateRangeParam;
 import org.hl7.fhir.instance.model.api.IBaseResource;
@@ -33,13 +34,17 @@ import java.util.Set;
 
 public interface ISearchBuilder {
 
-	Iterator<Long> createQuery(SearchParameterMap theParams, String theSearchUuid);
+	IResultIterator createQuery(SearchParameterMap theParams, String theSearchUuid);
+
+	void setMaxResultsToFetch(Integer theMaxResultsToFetch);
+
+	Iterator<Long> createCountQuery(SearchParameterMap theParams, String theSearchUuid);
 
 	void loadResourcesByPid(Collection<Long> theIncludePids, List<IBaseResource> theResourceListToPopulate, Set<Long> theRevIncludedPids, boolean theForHistoryOperation, EntityManager theEntityManager,
 									FhirContext theContext, IDao theDao);
 
-	Set<Long> loadIncludes(IDao theCallingDao, FhirContext theContext, EntityManager theEntityManager, Collection<Long> theMatches, Set<Include> theRevIncludes, boolean theReverseMode,
-								  DateRangeParam theLastUpdated);
+	Set<Long> loadIncludes(FhirContext theContext, EntityManager theEntityManager, Collection<Long> theMatches, Set<Include> theRevIncludes, boolean theReverseMode,
+								  DateRangeParam theLastUpdated, String theSearchIdOrDescription);
 
 	/**
 	 * How many results may be fetched at once
@@ -47,5 +52,7 @@ public interface ISearchBuilder {
 	void setFetchSize(int theFetchSize);
 
 	void setType(Class<? extends IBaseResource> theResourceType, String theResourceName);
+
+	void setPreviouslyAddedResourcePids(List<Long> thePreviouslyAddedResourcePids);
 
 }

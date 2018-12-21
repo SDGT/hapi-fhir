@@ -45,7 +45,7 @@ public class TestDstu3Config extends BaseJavaConfigDstu3 {
 	@Value(FHIR_LUCENE_LOCATION_DSTU3)
 	private String myFhirLuceneLocation;
 
-	@Bean()
+	@Bean
 	public DaoConfig daoConfig() {
 		DaoConfig retVal = new DaoConfig();
 		retVal.setSubscriptionEnabled(true);
@@ -59,6 +59,8 @@ public class TestDstu3Config extends BaseJavaConfigDstu3 {
 		retVal.setCountSearchResultsUpTo(TestR4Config.COUNT_SEARCH_RESULTS_UP_TO);
 		retVal.setIndexMissingFields(DaoConfig.IndexEnabledEnum.ENABLED);
 		retVal.setFetchSizeDefaultMaximum(10000);
+		retVal.setReindexThreadCount(1);
+		retVal.setExpungeEnabled(true);
 		return retVal;
 	}
 
@@ -88,11 +90,12 @@ public class TestDstu3Config extends BaseJavaConfigDstu3 {
 		}
 		retVal.setUsername(myDbUsername);
 		retVal.setPassword(myDbPassword);
+		retVal.setDefaultQueryTimeout(20);
 		return retVal;
 	}
 
 	@Override
-	@Bean()
+	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean retVal = super.entityManagerFactory();
 		retVal.setPersistenceUnitName("PU_HapiFhirJpaDstu3");
@@ -133,7 +136,7 @@ public class TestDstu3Config extends BaseJavaConfigDstu3 {
 		requestValidator.setFailOnSeverity(null);
 		requestValidator.setAddResponseHeaderOnSeverity(null);
 		requestValidator.setAddResponseOutcomeHeaderOnSeverity(ResultSeverityEnum.INFORMATION);
-//		requestValidator.addValidatorModule(instanceValidatorDstu3());
+		requestValidator.addValidatorModule(instanceValidatorDstu3());
 		requestValidator.setIgnoreValidatorExceptions(true);
 
 		return requestValidator;
@@ -144,7 +147,7 @@ public class TestDstu3Config extends BaseJavaConfigDstu3 {
 //		return new SubscriptionsRequireManualActivationInterceptorDstu3();
 //	}
 
-	@Bean()
+	@Bean
 	public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		JpaTransactionManager retVal = new JpaTransactionManager();
 		retVal.setEntityManagerFactory(entityManagerFactory);

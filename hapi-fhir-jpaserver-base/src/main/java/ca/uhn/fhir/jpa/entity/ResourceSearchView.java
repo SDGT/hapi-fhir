@@ -19,44 +19,38 @@ package ca.uhn.fhir.jpa.entity;
  * limitations under the License.
  * #L%
  */
-import java.io.Serializable;
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.Immutable;
-import org.hibernate.annotations.Subselect;
 
 import ca.uhn.fhir.context.FhirVersionEnum;
+import ca.uhn.fhir.jpa.model.entity.IBaseResourceEntity;
+import ca.uhn.fhir.jpa.model.entity.ResourceEncodingEnum;
 import ca.uhn.fhir.model.primitive.IdDt;
 import ca.uhn.fhir.model.primitive.InstantDt;
 import ca.uhn.fhir.rest.api.Constants;
+import org.hibernate.annotations.Immutable;
+import org.hibernate.annotations.Subselect;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 //@formatter:off
 @Entity
 @Immutable
-@Subselect("SELECT h.pid        as pid            " + 
-		",  h.res_id            as res_id         "	+ 
-		",  h.res_type          as res_type       " + 
-		",  h.res_version       as res_version    " + // FHIR version
-		",  h.res_ver           as res_ver        " + // resource version
-		",  h.has_tags          as has_tags       " + 
-		",  h.res_deleted_at    as res_deleted_at "	+ 
-		",  h.res_published     as res_published  " + 
-		",  h.res_updated       as res_updated    "	+ 
-		",  h.res_text          as res_text       " + 
-		",  h.res_encoding      as res_encoding   "	+ 
-		",  f.forced_id         as forced_pid      " + 
-		"FROM HFJ_RES_VER h "
-		+ "    LEFT OUTER JOIN HFJ_FORCED_ID f ON f.resource_pid = h.res_id "
-		+ "    INNER JOIN HFJ_RESOURCE r       ON r.res_id = h.res_id and r.res_ver = h.res_ver")
+@Subselect("SELECT h.pid        as pid            " +
+	",  h.res_id            as res_id         " +
+	",  h.res_type          as res_type       " +
+	",  h.res_version       as res_version    " + // FHIR version
+	",  h.res_ver           as res_ver        " + // resource version
+	",  h.has_tags          as has_tags       " +
+	",  h.res_deleted_at    as res_deleted_at " +
+	",  h.res_published     as res_published  " +
+	",  h.res_updated       as res_updated    " +
+	",  h.res_text          as res_text       " +
+	",  h.res_encoding      as res_encoding   " +
+	",  f.forced_id         as forced_pid      " +
+	"FROM HFJ_RES_VER h "
+	+ "    LEFT OUTER JOIN HFJ_FORCED_ID f ON f.resource_pid = h.res_id "
+	+ "    INNER JOIN HFJ_RESOURCE r       ON r.res_id = h.res_id and r.res_ver = h.res_ver")
 // @formatter:on
 public class ResourceSearchView implements IBaseResourceEntity, Serializable {
 
@@ -142,7 +136,7 @@ public class ResourceSearchView implements IBaseResourceEntity, Serializable {
 			return new IdDt(myResourceType + '/' + id + '/' + Constants.PARAM_HISTORY + '/' + getVersion());
 		} else {
 			return new IdDt(
-					getResourceType() + '/' + getForcedId() + '/' + Constants.PARAM_HISTORY + '/' + getVersion());
+				getResourceType() + '/' + getForcedId() + '/' + Constants.PARAM_HISTORY + '/' + getVersion());
 		}
 	}
 

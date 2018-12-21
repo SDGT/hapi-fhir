@@ -93,15 +93,17 @@ public class TermConcept implements Serializable {
 	private Long myIndexStatus;
 	@Field(name = "myParentPids", index = org.hibernate.search.annotations.Index.YES, store = Store.YES, analyze = Analyze.YES, analyzer = @Analyzer(definition = "conceptParentPidsAnalyzer"))
 	@Lob
-	@Column(name="PARENT_PIDS", nullable = true)
+	@Column(name = "PARENT_PIDS", nullable = true)
 	private String myParentPids;
 	@OneToMany(cascade = {}, fetch = FetchType.LAZY, mappedBy = "myChild")
 	private Collection<TermConceptParentChildLink> myParents;
 	@Column(name = "CODE_SEQUENCE", nullable = true)
 	private Integer mySequence;
+
 	public TermConcept() {
 		super();
 	}
+
 	public TermConcept(TermCodeSystemVersion theCs, String theCode) {
 		setCodeSystemVersion(theCs);
 		setCode(theCode);
