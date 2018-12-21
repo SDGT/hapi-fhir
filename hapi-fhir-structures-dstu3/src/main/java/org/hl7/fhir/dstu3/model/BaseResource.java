@@ -50,7 +50,7 @@ public abstract class BaseResource extends Base implements IAnyResource, IElemen
   /**
    * organisation id
    */
-  @Child(name = "unitId", type = {StringType.class}, min=0, max=1, modifier=false, summary=true)
+  @Child(name = "orgId", type = {StringType.class}, min=0, max=1, modifier=false, summary=true)
   @Description(shortDefinition="organisation id ",
     formalDefinition="organisation id " )
   protected StringType orgId;
@@ -58,7 +58,7 @@ public abstract class BaseResource extends Base implements IAnyResource, IElemen
   /**
    * for audit purpose this relates to created date and time
    */
-  @Child(name = "unitId", type = {StringType.class}, min=0, max=1, modifier=false, summary=true)
+  @Child(name = "createdDate", type = {StringType.class}, min=0, max=1, modifier=false, summary=true)
   @Description(shortDefinition="for audit purpose this relates to created  date and time",
     formalDefinition="for audit purpose this relates to created date and time" )
   protected DateType createdDate;
@@ -74,7 +74,7 @@ public abstract class BaseResource extends Base implements IAnyResource, IElemen
   /**
    * for audit purpose this relates to who created this record
    */
-  @Child(name = "unitId", type = {DateType.class},  min=0, max=1, modifier=false, summary=true)
+  @Child(name = "createdBy", type = {DateType.class},  min=0, max=1, modifier=false, summary=true)
   @Description(shortDefinition="for audit purpose this relates to who created this record",
     formalDefinition="for audit purpose this relates to who created this record" )
   protected StringType createdBy;
