@@ -66,7 +66,7 @@ public abstract class BaseResource extends Base implements IAnyResource, IElemen
   /**
    * for audit purpose this relates to updated  date and time.
    */
-  @Child(name = "unitId", type = {DateType.class},  min=0, max=1, modifier=false, summary=true)
+  @Child(name = "updatedDate", type = {DateType.class},  min=0, max=1, modifier=false, summary=true)
   @Description(shortDefinition="for audit purpose this relates to updated  date and time",
     formalDefinition="for audit purpose this relates to updated  date and time" )
   protected DateType updatedDate;
