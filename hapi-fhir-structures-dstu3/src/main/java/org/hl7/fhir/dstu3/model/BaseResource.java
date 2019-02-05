@@ -48,6 +48,13 @@ public abstract class BaseResource extends Base implements IAnyResource, IElemen
 
 
   /**
+   * Unit Code
+   */
+  @Child(name = "unitCode", type = {StringType.class},  min=0, max=1, modifier=false, summary=true)
+  @Description(shortDefinition="Unit Code ", formalDefinition="Unit Code " )
+  protected StringType unitCode;
+
+  /**
    * organisation id
    */
   @Child(name = "orgId", type = {StringType.class}, min=0, max=1, modifier=false, summary=true)
@@ -133,5 +140,13 @@ public abstract class BaseResource extends Base implements IAnyResource, IElemen
 
   public void setUpdatedBy(StringType updatedBy) {
     this.updatedBy = updatedBy;
+  }
+
+  public StringType getUnitCode() {
+    return unitCode;
+  }
+
+  public void setUnitCode(StringType unitCode) {
+    this.unitCode = unitCode;
   }
 }
