@@ -61,6 +61,12 @@ public abstract class BaseResource extends Base implements IAnyResource, IElemen
   @Description(shortDefinition="organisation id ",
     formalDefinition="organisation id " )
   protected StringType orgId;
+  
+  @Child(name = "orgCode", type = {StringType.class}, min=0, max=1, modifier=false, summary=true)
+  @Description(shortDefinition="organisation code ",
+    formalDefinition="organisation code " )
+  protected StringType orgCode;
+
 
   /**
    * for audit purpose this relates to created date and time
@@ -149,4 +155,12 @@ public abstract class BaseResource extends Base implements IAnyResource, IElemen
   public void setUnitCode(StringType unitCode) {
     this.unitCode = unitCode;
   }
+
+public StringType getOrgCode() {
+	return orgCode;
+}
+
+public void setOrgCode(StringType orgCode) {
+	this.orgCode = orgCode;
+}
 }
