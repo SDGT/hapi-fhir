@@ -61,22 +61,28 @@ public abstract class BaseResource extends Base implements IAnyResource, IElemen
   @Description(shortDefinition="organisation id ",
     formalDefinition="organisation id " )
   protected StringType orgId;
+  
+  @Child(name = "orgCode", type = {StringType.class}, min=0, max=1, modifier=false, summary=true)
+  @Description(shortDefinition="organisation code ",
+    formalDefinition="organisation code " )
+  protected StringType orgCode;
+
 
   /**
    * for audit purpose this relates to created date and time
    */
-  @Child(name = "createdDate", type = {StringType.class}, min=0, max=1, modifier=false, summary=true)
+  @Child(name = "createdDate", type = {DecimalType.class}, min=0, max=1, modifier=false, summary=true)
   @Description(shortDefinition="for audit purpose this relates to created  date and time",
     formalDefinition="for audit purpose this relates to created date and time" )
-  protected DateType createdDate;
+  protected DecimalType createdDate;
 
   /**
    * for audit purpose this relates to updated  date and time.
    */
-  @Child(name = "updatedDate", type = {DateType.class},  min=0, max=1, modifier=false, summary=true)
+  @Child(name = "updatedDate", type = {DecimalType.class},  min=0, max=1, modifier=false, summary=true)
   @Description(shortDefinition="for audit purpose this relates to updated  date and time",
     formalDefinition="for audit purpose this relates to updated  date and time" )
-  protected DateType updatedDate;
+  protected DecimalType updatedDate;
 
   /**
    * for audit purpose this relates to who created this record
@@ -110,19 +116,19 @@ public abstract class BaseResource extends Base implements IAnyResource, IElemen
     this.orgId = orgId;
   }
 
-  public DateType getCreatedDate() {
+  public DecimalType getCreatedDate() {
     return createdDate;
   }
 
-  public void setCreatedDate(DateType createdDate) {
+  public void setCreatedDate(DecimalType createdDate) {
     this.createdDate = createdDate;
   }
 
-  public DateType getUpdatedDate() {
+  public DecimalType getUpdatedDate() {
     return updatedDate;
   }
 
-  public void setUpdatedDate(DateType updatedDate) {
+  public void setUpdatedDate(DecimalType updatedDate) {
     this.updatedDate = updatedDate;
   }
 
@@ -149,4 +155,12 @@ public abstract class BaseResource extends Base implements IAnyResource, IElemen
   public void setUnitCode(StringType unitCode) {
     this.unitCode = unitCode;
   }
+
+public StringType getOrgCode() {
+	return orgCode;
+}
+
+public void setOrgCode(StringType orgCode) {
+	this.orgCode = orgCode;
+}
 }
