@@ -313,4 +313,20 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>snapshot</id>
+			<name>Snapshot Release</name>
+			<url> http://18.219.201.76:8081/repository/sdgt_core/</url>
+
+		</snapshotRepository>
+		<repository>
+
+			<id>release</id>
+			<name>Internal Release</name>
+			<url> http://18.219.201.76:8081/repository/sdgt_core/</url>
+
+		</repository>
+	</distributionManagement>
 </project>
